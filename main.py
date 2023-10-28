@@ -13,7 +13,7 @@ Reference:
 
 """
 """
-Edited by Chu Yuda  
+Edited by Wang Wei-Lin 
 Implement Facebook dlrm to apply structural pruning in DeepFwFM
 Reference :
 facebookresearch/dlrm

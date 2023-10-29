@@ -15,8 +15,8 @@ A Dense Data Honoring Nerual Network Model for Click-Through Rate Predicton
    
 # Requirements
 We tested DDHNet with the following requirements.
-\npython => 3.8.10
-\npytorch => 1.10
+1. python => 3.8.10
+2. pytorch => 1.10
 
 # Results
 | Year | Model | FLOPs | AUC | 
@@ -35,5 +35,8 @@ We tested DDHNet with the following requirements.
 # Reproduce the results 
 1. download CTR kaggle dataset => http://labs.criteo.com/2014/02/kaggle-display-advertising-challenge-dataset/
 2. percentile clamping dataset
+   - python Percentile.py --clamp --save_path /SAVE YOUR OUTPUT(.PKL)/ --percentile 0.9925 (percentile clamping => 99.25%)  
 3. mirror normalization
+   - python Preprocess.py
 4. train model
+   - sh train.sh ["--train-csv-file /YOUR TRAINING DATASET PATH/  --valid-csv-file /YOUR VALID DATASET PATH/"]

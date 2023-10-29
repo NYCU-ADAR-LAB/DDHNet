@@ -3,7 +3,7 @@ A Dense Data Honoring Nerual Network Model for Click-Through Rate Predicton
 # Model Architecture
 ![Uploading image.png…]()
 
-## key technology
+### key technology
 1. dense data preprocessing (percentile clamping & mirror normalization)
 2. bidirectional fusion (D2S MLP & S2D MLP)
 3. multi-expert bottom MLPs

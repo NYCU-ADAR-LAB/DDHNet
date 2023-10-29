@@ -1,6 +1,29 @@
 # DDHNet
-CTR (Click-Through Rate) prediction plays a key role in advertising and recommendation systems, whose goal is to estimate the probability of a user clicking on a recommended item, impacting directly and profoundly on the revenue of the business providers. The core of CTR prediction is to model high-order feature interactions by learning from numerical dense data and high categorical sparse data. While existing deep CTR models have focused on extracting feature interactions from sparse data, most of the models adopt simple strategies, or even none, on dense data, limiting their capability to capture the interaction information and dishonoring the contribution in dense data. Even though models like DLRM use more advanced techniques to process dense data, the combined feature interaction from sparse and dense data is highly imbalanced, causing significant information loss from the distilled interaction information in dense data. In this paper, we propose a novel mechanism in DDHNet to honor the numerical dense data, where precise dense data preprocessing, multi-expert bottom MLPs, and front gate of expert are introduced to handle and select meaningful interaction information from dense data. We also propose bidirectional fusion to combine feature interaction from sparse and dense data in a balanced, bidirectional fushion, bringing minimal information loss as well as significant performance improvements. Furthermore, we introduce total interaction to increase the scalability of the model and learn high-order feature interaction explicitly at the same time. Not only did we raise awareness of the issues in existing studies of processing dense data, but we also address them by devising efficient and effective strategies. Comprehensive experiments are conducted on Criteo dataset from Kaggle challenge to show the superiority of our DDHNet over state-of-the-art deep CTR models.
+A Dense Data Honoring Nerual Network Model for Click-Through Rate Predicton 
 # Model Architecture
 ![Uploading image.png…]()
 
+## key technology
+1. dense data preprocessing (percentile clamping & mirror normalization)
+2. bidirectional fusion (D2S MLP & S2D MLP)
+3. multi-expert bottom MLPs
+4. front gate of expert
 
+# Model Configuration 
+1. percentile clamping (99.25%)
+2. 2 experts
+   
+# Requirements
+We tested DDHNet with the following requirements.
+python => 3.8.10
+pytorch => 1.10
+
+# Results
+| Year | Model | AUC | FLOPs | 
+| ---- | ----- | --- | ----- |
+| 2017 | DeepFM | 0.8007 | 967K |
+# Reproduce the results 
+1. download CTR kaggle dataset => http://labs.criteo.com/2014/02/kaggle-display-advertising-challenge-dataset/
+2. percentile clamping dataset
+3. mirror normalization
+4. train model

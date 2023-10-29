@@ -15,8 +15,8 @@ A Dense Data Honoring Nerual Network Model for Click-Through Rate Predicton
    
 # Requirements
 We tested DDHNet with the following requirements.
-1. python => 3.8.10
-2. pytorch => 1.10
+`1. python => 3.8.10
+2. pytorch => 1.10`
 
 # Results
 | Year | Model | FLOPs | AUC | 
@@ -37,6 +37,6 @@ We tested DDHNet with the following requirements.
 2. percentile clamping dataset
    - `python Percentile.py --clamp --save_path /SAVE YOUR OUTPUT(.PKL)/ --percentile 0.9925 (percentile clamping => 99.25%)`
 3. mirror normalization
-   - python Preprocess.py
+   - `python Preprocess.py`
 4. train model
-   - sh train.sh ["--train-csv-file /YOUR TRAINING DATASET PATH/  --valid-csv-file /YOUR VALID DATASET PATH/"]
+   - `sh train.sh ["--train-csv-file /YOUR TRAINING DATASET PATH/  --valid-csv-file /YOUR VALID DATASET PATH/"]`

@@ -35,7 +35,7 @@ We tested DDHNet with the following requirements.
 # Reproduce the results 
 1. download CTR kaggle dataset => http://labs.criteo.com/2014/02/kaggle-display-advertising-challenge-dataset/
 2. percentile clamping dataset
-   - python Percentile.py --clamp --save_path /SAVE YOUR OUTPUT(.PKL)/ --percentile 0.9925 (percentile clamping => 99.25%)  
+   - 'python Percentile.py --clamp --save_path /SAVE YOUR OUTPUT(.PKL)/ --percentile 0.9925 (percentile clamping => 99.25%)'  
 3. mirror normalization
    - python Preprocess.py
 4. train model

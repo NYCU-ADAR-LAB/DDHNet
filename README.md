@@ -15,8 +15,8 @@ A Dense Data Honoring Nerual Network Model for Click-Through Rate Predicton
    
 # Requirements
 We tested DDHNet with the following requirements.
-`1. python => 3.8.10
-2. pytorch => 1.10`
+1. python => 3.8.10
+2. pytorch => 1.10
 
 # Results
 | Year | Model | FLOPs | AUC | 

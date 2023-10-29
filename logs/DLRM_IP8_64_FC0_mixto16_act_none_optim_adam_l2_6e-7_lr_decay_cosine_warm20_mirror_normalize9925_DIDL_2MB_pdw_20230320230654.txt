@@ -1,0 +1,343 @@
+Namespace(batch_size=2048, bottom_mlp='13-512-256-64', compressed_dim=16, debug=False, emb_save_path='./tmp/embedding/{task}', embedding_size=64, eval_only=False, expansion_factor='1-1', fc_sparsity='0', feature_map_file='/home/twsugkm569/hailey/DeepLight/data/large/criteo_feature_map', feature_map_from_file=False, full_interactions=False, gpu=0, interaction_op='mix', learning_rate=0.001, load_path=None, lr_alpha=0.0, lr_decay='cosine', mix_act='none', mix_residual=False, model='DLRM', momentum=0, n_epochs=25, numerical=13, optimizer_type='adam', pep_flag=False, pretrain=None, random_seed=0, re_init=False, retrain=False, retrain_emb_sparsity=0, save_path='./runs/DLRM_IP8_64_FC0_mixto16_act_none_optim_adam_l2_6e-7_lr_decay_cosine_warm20_mirror_normalize9925_DIDL_2MB_pdw', sparse_dim_start=13, test_batch_size=131072, threshold_init=-150, threshold_type='dimension', top_mlp='1024-512-256', train_csv_file='/work/twsugkm569/data/kaggle/dataset_mirror_normalize9925/train.csv', use_cuda=True, valid_csv_file='/work/twsugkm569/data/kaggle/dataset_mirror_normalize9925/valid.csv', warm=20, weight_decay=6e-07)
+Loading training data...
+data loading time:  971.0930724143982
+DLRM(
+  (emb_l): ModuleList(
+    (0): EmbeddingBag(1458, 64, mode=sum)
+    (1): EmbeddingBag(556, 64, mode=sum)
+    (2): EmbeddingBag(245197, 64, mode=sum)
+    (3): EmbeddingBag(166166, 64, mode=sum)
+    (4): EmbeddingBag(306, 64, mode=sum)
+    (5): EmbeddingBag(20, 64, mode=sum)
+    (6): EmbeddingBag(12055, 64, mode=sum)
+    (7): EmbeddingBag(634, 64, mode=sum)
+    (8): EmbeddingBag(4, 64, mode=sum)
+    (9): EmbeddingBag(46330, 64, mode=sum)
+    (10): EmbeddingBag(5229, 64, mode=sum)
+    (11): EmbeddingBag(243454, 64, mode=sum)
+    (12): EmbeddingBag(3177, 64, mode=sum)
+    (13): EmbeddingBag(27, 64, mode=sum)
+    (14): EmbeddingBag(11745, 64, mode=sum)
+    (15): EmbeddingBag(225322, 64, mode=sum)
+    (16): EmbeddingBag(11, 64, mode=sum)
+    (17): EmbeddingBag(4727, 64, mode=sum)
+    (18): EmbeddingBag(2058, 64, mode=sum)
+    (19): EmbeddingBag(5, 64, mode=sum)
+    (20): EmbeddingBag(238640, 64, mode=sum)
+    (21): EmbeddingBag(18, 64, mode=sum)
+    (22): EmbeddingBag(16, 64, mode=sum)
+    (23): EmbeddingBag(67856, 64, mode=sum)
+    (24): EmbeddingBag(89, 64, mode=sum)
+    (25): EmbeddingBag(50942, 64, mode=sum)
+  )
+  (ti): TotalInteraction(
+    (catego_mixing): ModuleList()
+    (latent_mixing): ModuleList()
+    (catego_LN1): Linear(in_features=27, out_features=27, bias=True)
+    (catego_LN2): Linear(in_features=27, out_features=27, bias=True)
+    (latent_LN1): Linear(in_features=64, out_features=64, bias=True)
+    (latent_LN2): Linear(in_features=64, out_features=16, bias=True)
+  )
+  (bot_l): Sequential(
+    (0): Sequential(
+      (0): Linear(in_features=13, out_features=512, bias=True)
+      (1): ReLU()
+      (2): Dropout(p=0.5, inplace=False)
+    )
+    (1): Sequential(
+      (0): Linear(in_features=512, out_features=256, bias=True)
+      (1): ReLU()
+      (2): Dropout(p=0.5, inplace=False)
+    )
+    (2): Sequential(
+      (0): Linear(in_features=256, out_features=64, bias=True)
+      (1): ReLU()
+      (2): Dropout(p=0.5, inplace=False)
+    )
+  )
+  (bot_l_1): Sequential(
+    (0): Sequential(
+      (0): Linear(in_features=13, out_features=512, bias=True)
+      (1): ReLU()
+      (2): Dropout(p=0.5, inplace=False)
+    )
+    (1): Sequential(
+      (0): Linear(in_features=512, out_features=256, bias=True)
+      (1): ReLU()
+      (2): Dropout(p=0.5, inplace=False)
+    )
+    (2): Sequential(
+      (0): Linear(in_features=256, out_features=64, bias=True)
+      (1): ReLU()
+      (2): Dropout(p=0.5, inplace=False)
+    )
+  )
+  (bot_l_2): Sequential(
+    (0): Sequential(
+      (0): Linear(in_features=13, out_features=512, bias=True)
+      (1): ReLU()
+      (2): Dropout(p=0.5, inplace=False)
+    )
+    (1): Sequential(
+      (0): Linear(in_features=512, out_features=256, bias=True)
+      (1): ReLU()
+      (2): Dropout(p=0.5, inplace=False)
+    )
+    (2): Sequential(
+      (0): Linear(in_features=256, out_features=64, bias=True)
+      (1): ReLU()
+      (2): Dropout(p=0.5, inplace=False)
+    )
+  )
+  (top_l): Sequential(
+    (0): Sequential(
+      (0): Linear(in_features=560, out_features=1024, bias=True)
+      (1): ReLU()
+      (2): Dropout(p=0.5, inplace=False)
+    )
+    (1): Sequential(
+      (0): Linear(in_features=1024, out_features=512, bias=True)
+      (1): ReLU()
+      (2): Dropout(p=0.5, inplace=False)
+    )
+    (2): Sequential(
+      (0): Linear(in_features=512, out_features=256, bias=True)
+      (1): ReLU()
+      (2): Dropout(p=0.5, inplace=False)
+    )
+    (3): Linear(in_features=256, out_features=1, bias=True)
+  )
+  (DNN_1): Sequential(
+    (0): Linear(in_features=26, out_features=26, bias=True)
+    (1): Identity()
+    (2): Dropout(p=0.5, inplace=False)
+  )
+  (DNN_2): Sequential(
+    (0): Linear(in_features=26, out_features=2, bias=True)
+    (1): Identity()
+    (2): Dropout(p=0.5, inplace=False)
+  )
+)
+Train split size: 41254893
+init_weights
+Training [1] loss: 0.448121 AUC: 0.803347 Acc: 0.791717  time: 545.857 s
+Validation [1] loss: 0.450591 AUC: 0.800426 TPR: 0.376180 TNR: 0.933173 Acc: 0.790422 Kinf/s: 659.458
+Best ACC: 0.790422
+Best AUC: 0.800426 ACC: 0.790422
+**************************************************
+Training dataset shuffled.
+Saving best model at  ./runs/DLRM_IP8_64_FC0_mixto16_act_none_optim_adam_l2_6e-7_lr_decay_cosine_warm20_mirror_normalize9925_DIDL_2MB_pdw
+Training [2] loss: 0.437513 AUC: 0.814725 Acc: 0.797044  time: 537.816 s
+Validation [2] loss: 0.442190 AUC: 0.809520 TPR: 0.392049 TNR: 0.933332 Acc: 0.794608 Kinf/s: 659.882
+Best ACC: 0.794608
+Best AUC: 0.809520 ACC: 0.794608
+**************************************************
+Training dataset shuffled.
+Saving best model at  ./runs/DLRM_IP8_64_FC0_mixto16_act_none_optim_adam_l2_6e-7_lr_decay_cosine_warm20_mirror_normalize9925_DIDL_2MB_pdw
+Training [3] loss: 0.434564 AUC: 0.817730 Acc: 0.798672  time: 538.282 s
+Validation [3] loss: 0.440380 AUC: 0.811506 TPR: 0.401004 TNR: 0.931567 Acc: 0.795590 Kinf/s: 660.200
+Best ACC: 0.795590
+Best AUC: 0.811506 ACC: 0.795590
+**************************************************
+Training dataset shuffled.
+Saving best model at  ./runs/DLRM_IP8_64_FC0_mixto16_act_none_optim_adam_l2_6e-7_lr_decay_cosine_warm20_mirror_normalize9925_DIDL_2MB_pdw
+Training [4] loss: 0.432830 AUC: 0.819492 Acc: 0.799489  time: 538.420 s
+Validation [4] loss: 0.439446 AUC: 0.812415 TPR: 0.413846 TNR: 0.927554 Acc: 0.795897 Kinf/s: 660.150
+Best ACC: 0.795897
+Best AUC: 0.812415 ACC: 0.795897
+**************************************************
+Training dataset shuffled.
+Saving best model at  ./runs/DLRM_IP8_64_FC0_mixto16_act_none_optim_adam_l2_6e-7_lr_decay_cosine_warm20_mirror_normalize9925_DIDL_2MB_pdw
+Training [5] loss: 0.431959 AUC: 0.820365 Acc: 0.799960  time: 537.930 s
+Validation [5] loss: 0.439185 AUC: 0.812800 TPR: 0.422522 TNR: 0.924832 Acc: 0.796096 Kinf/s: 659.948
+Best ACC: 0.796096
+Best AUC: 0.812800 ACC: 0.796096
+**************************************************
+Training dataset shuffled.
+Saving best model at  ./runs/DLRM_IP8_64_FC0_mixto16_act_none_optim_adam_l2_6e-7_lr_decay_cosine_warm20_mirror_normalize9925_DIDL_2MB_pdw
+Training [6] loss: 0.431719 AUC: 0.820701 Acc: 0.800230  time: 538.268 s
+Validation [6] loss: 0.439469 AUC: 0.812749 TPR: 0.419872 TNR: 0.925862 Acc: 0.796183 Kinf/s: 660.182
+Best ACC: 0.796183
+**************************************************
+Training dataset shuffled.
+Training [7] loss: 0.430949 AUC: 0.821561 Acc: 0.800461  time: 537.899 s
+Validation [7] loss: 0.438841 AUC: 0.813167 TPR: 0.404919 TNR: 0.931296 Acc: 0.796392 Kinf/s: 660.489
+Best ACC: 0.796392
+Best AUC: 0.813167 ACC: 0.796392
+**************************************************
+Training dataset shuffled.
+Saving best model at  ./runs/DLRM_IP8_64_FC0_mixto16_act_none_optim_adam_l2_6e-7_lr_decay_cosine_warm20_mirror_normalize9925_DIDL_2MB_pdw
+Training [8] loss: 0.430482 AUC: 0.822032 Acc: 0.800790  time: 537.925 s
+Validation [8] loss: 0.438593 AUC: 0.813372 TPR: 0.422234 TNR: 0.925251 Acc: 0.796334 Kinf/s: 660.098
+Best AUC: 0.813372 ACC: 0.796334
+**************************************************
+Training dataset shuffled.
+Saving best model at  ./runs/DLRM_IP8_64_FC0_mixto16_act_none_optim_adam_l2_6e-7_lr_decay_cosine_warm20_mirror_normalize9925_DIDL_2MB_pdw
+Training [9] loss: 0.429988 AUC: 0.822421 Acc: 0.801063  time: 538.057 s
+Validation [9] loss: 0.438346 AUC: 0.813796 TPR: 0.417056 TNR: 0.927657 Acc: 0.796796 Kinf/s: 660.062
+Best ACC: 0.796796
+Best AUC: 0.813796 ACC: 0.796796
+**************************************************
+Training dataset shuffled.
+Saving best model at  ./runs/DLRM_IP8_64_FC0_mixto16_act_none_optim_adam_l2_6e-7_lr_decay_cosine_warm20_mirror_normalize9925_DIDL_2MB_pdw
+Training [10] loss: 0.429537 AUC: 0.822907 Acc: 0.801295  time: 538.271 s
+Validation [10] loss: 0.437958 AUC: 0.813976 TPR: 0.411637 TNR: 0.929509 Acc: 0.796785 Kinf/s: 659.876
+Best AUC: 0.813976 ACC: 0.796785
+**************************************************
+Training dataset shuffled.
+Saving best model at  ./runs/DLRM_IP8_64_FC0_mixto16_act_none_optim_adam_l2_6e-7_lr_decay_cosine_warm20_mirror_normalize9925_DIDL_2MB_pdw
+Training [11] loss: 0.429887 AUC: 0.823240 Acc: 0.801146  time: 538.433 s
+Validation [11] loss: 0.438101 AUC: 0.813974 TPR: 0.395360 TNR: 0.934996 Acc: 0.796694 Kinf/s: 659.704
+**************************************************
+Training dataset shuffled.
+Training [12] loss: 0.430429 AUC: 0.822985 Acc: 0.801257  time: 538.418 s
+Validation [12] loss: 0.438504 AUC: 0.813811 TPR: 0.415100 TNR: 0.928165 Acc: 0.796672 Kinf/s: 659.913
+**************************************************
+Training dataset shuffled.
+Training [13] loss: 0.429147 AUC: 0.823221 Acc: 0.801514  time: 538.200 s
+Validation [13] loss: 0.438068 AUC: 0.813980 TPR: 0.420854 TNR: 0.926240 Acc: 0.796716 Kinf/s: 659.781
+Best AUC: 0.813980 ACC: 0.796716
+**************************************************
+Training dataset shuffled.
+Saving best model at  ./runs/DLRM_IP8_64_FC0_mixto16_act_none_optim_adam_l2_6e-7_lr_decay_cosine_warm20_mirror_normalize9925_DIDL_2MB_pdw
+Training [14] loss: 0.429370 AUC: 0.823716 Acc: 0.801532  time: 537.507 s
+Validation [14] loss: 0.438097 AUC: 0.813896 TPR: 0.405449 TNR: 0.931692 Acc: 0.796822 Kinf/s: 660.458
+Best ACC: 0.796822
+**************************************************
+Training dataset shuffled.
+Training [15] loss: 0.428756 AUC: 0.823709 Acc: 0.801677  time: 535.696 s
+Validation [15] loss: 0.437917 AUC: 0.814174 TPR: 0.414155 TNR: 0.928734 Acc: 0.796853 Kinf/s: 659.597
+Best ACC: 0.796853
+Best AUC: 0.814174 ACC: 0.796853
+**************************************************
+Training dataset shuffled.
+Saving best model at  ./runs/DLRM_IP8_64_FC0_mixto16_act_none_optim_adam_l2_6e-7_lr_decay_cosine_warm20_mirror_normalize9925_DIDL_2MB_pdw
+Training [16] loss: 0.428735 AUC: 0.823923 Acc: 0.801748  time: 535.371 s
+Validation [16] loss: 0.437692 AUC: 0.814204 TPR: 0.411089 TNR: 0.929887 Acc: 0.796925 Kinf/s: 660.227
+Best ACC: 0.796925
+Best AUC: 0.814204 ACC: 0.796925
+**************************************************
+Training dataset shuffled.
+Saving best model at  ./runs/DLRM_IP8_64_FC0_mixto16_act_none_optim_adam_l2_6e-7_lr_decay_cosine_warm20_mirror_normalize9925_DIDL_2MB_pdw
+Training [17] loss: 0.429077 AUC: 0.824091 Acc: 0.801531  time: 535.442 s
+Validation [17] loss: 0.437907 AUC: 0.814189 TPR: 0.391982 TNR: 0.936404 Acc: 0.796875 Kinf/s: 659.612
+**************************************************
+Training dataset shuffled.
+Training [18] loss: 0.428651 AUC: 0.824037 Acc: 0.801708  time: 535.667 s
+Validation [18] loss: 0.438289 AUC: 0.814064 TPR: 0.402063 TNR: 0.932931 Acc: 0.796876 Kinf/s: 660.097
+**************************************************
+Training dataset shuffled.
+Training [19] loss: 0.428654 AUC: 0.824229 Acc: 0.801775  time: 535.670 s
+Validation [19] loss: 0.438043 AUC: 0.814053 TPR: 0.402223 TNR: 0.932539 Acc: 0.796626 Kinf/s: 659.525
+**************************************************
+Training dataset shuffled.
+Training [20] loss: 0.428545 AUC: 0.824062 Acc: 0.801885  time: 535.328 s
+Validation [20] loss: 0.437914 AUC: 0.813953 TPR: 0.412912 TNR: 0.929078 Acc: 0.796791 Kinf/s: 660.417
+**************************************************
+Training dataset shuffled.
+Training [21] loss: 0.428678 AUC: 0.824353 Acc: 0.801970  time: 535.392 s
+Validation [21] loss: 0.438246 AUC: 0.813969 TPR: 0.411670 TNR: 0.929411 Acc: 0.796720 Kinf/s: 659.669
+**************************************************
+Training dataset shuffled.
+Training [22] loss: 0.427387 AUC: 0.825117 Acc: 0.802475  time: 535.389 s
+Validation [22] loss: 0.437487 AUC: 0.814538 TPR: 0.414850 TNR: 0.928662 Acc: 0.796978 Kinf/s: 660.183
+Best ACC: 0.796978
+Best AUC: 0.814538 ACC: 0.796978
+**************************************************
+Training dataset shuffled.
+Saving best model at  ./runs/DLRM_IP8_64_FC0_mixto16_act_none_optim_adam_l2_6e-7_lr_decay_cosine_warm20_mirror_normalize9925_DIDL_2MB_pdw
+Training [23] loss: 0.424740 AUC: 0.828037 Acc: 0.803680  time: 535.443 s
+Validation [23] loss: 0.436789 AUC: 0.815217 TPR: 0.406026 TNR: 0.932153 Acc: 0.797313 Kinf/s: 659.904
+Best ACC: 0.797313
+Best AUC: 0.815217 ACC: 0.797313
+**************************************************
+Training dataset shuffled.
+Saving best model at  ./runs/DLRM_IP8_64_FC0_mixto16_act_none_optim_adam_l2_6e-7_lr_decay_cosine_warm20_mirror_normalize9925_DIDL_2MB_pdw
+Training [24] loss: 0.419357 AUC: 0.833213 Acc: 0.806890  time: 535.474 s
+Validation [24] loss: 0.436351 AUC: 0.815880 TPR: 0.434307 TNR: 0.922638 Acc: 0.797485 Kinf/s: 660.396
+Best ACC: 0.797485
+Best AUC: 0.815880 ACC: 0.797485
+**************************************************
+Training dataset shuffled.
+Saving best model at  ./runs/DLRM_IP8_64_FC0_mixto16_act_none_optim_adam_l2_6e-7_lr_decay_cosine_warm20_mirror_normalize9925_DIDL_2MB_pdw
+Training [25] loss: 0.412495 AUC: 0.839827 Acc: 0.810675  time: 535.498 s
+Validation [25] loss: 0.437958 AUC: 0.814504 TPR: 0.429450 TNR: 0.923454 Acc: 0.796847 Kinf/s: 659.976
+**************************************************
+Training dataset shuffled.
+Evaluate  ./runs/DLRM_IP8_64_FC0_mixto16_act_none_optim_adam_l2_6e-7_lr_decay_cosine_warm20_mirror_normalize9925_DIDL_2MB_pdw/best.pt ...
+**************************************************
+dense_weight torch.Size([13])
+dense_weight_1 torch.Size([13])
+dense_weight_2 torch.Size([13])
+emb_l.0.weight torch.Size([1458, 64])
+emb_l.1.weight torch.Size([556, 64])
+emb_l.2.weight torch.Size([245197, 64])
+emb_l.3.weight torch.Size([166166, 64])
+emb_l.4.weight torch.Size([306, 64])
+emb_l.5.weight torch.Size([20, 64])
+emb_l.6.weight torch.Size([12055, 64])
+emb_l.7.weight torch.Size([634, 64])
+emb_l.8.weight torch.Size([4, 64])
+emb_l.9.weight torch.Size([46330, 64])
+emb_l.10.weight torch.Size([5229, 64])
+emb_l.11.weight torch.Size([243454, 64])
+emb_l.12.weight torch.Size([3177, 64])
+emb_l.13.weight torch.Size([27, 64])
+emb_l.14.weight torch.Size([11745, 64])
+emb_l.15.weight torch.Size([225322, 64])
+emb_l.16.weight torch.Size([11, 64])
+emb_l.17.weight torch.Size([4727, 64])
+emb_l.18.weight torch.Size([2058, 64])
+emb_l.19.weight torch.Size([5, 64])
+emb_l.20.weight torch.Size([238640, 64])
+emb_l.21.weight torch.Size([18, 64])
+emb_l.22.weight torch.Size([16, 64])
+emb_l.23.weight torch.Size([67856, 64])
+emb_l.24.weight torch.Size([89, 64])
+emb_l.25.weight torch.Size([50942, 64])
+ti.catego_LN1.weight torch.Size([27, 27])
+ti.catego_LN1.bias torch.Size([27])
+ti.catego_LN2.weight torch.Size([27, 27])
+ti.catego_LN2.bias torch.Size([27])
+ti.latent_LN1.weight torch.Size([64, 64])
+ti.latent_LN1.bias torch.Size([64])
+ti.latent_LN2.weight torch.Size([16, 64])
+ti.latent_LN2.bias torch.Size([16])
+bot_l.0.0.weight torch.Size([512, 13])
+bot_l.0.0.bias torch.Size([512])
+bot_l.1.0.weight torch.Size([256, 512])
+bot_l.1.0.bias torch.Size([256])
+bot_l.2.0.weight torch.Size([64, 256])
+bot_l.2.0.bias torch.Size([64])
+bot_l_1.0.0.weight torch.Size([512, 13])
+bot_l_1.0.0.bias torch.Size([512])
+bot_l_1.1.0.weight torch.Size([256, 512])
+bot_l_1.1.0.bias torch.Size([256])
+bot_l_1.2.0.weight torch.Size([64, 256])
+bot_l_1.2.0.bias torch.Size([64])
+bot_l_2.0.0.weight torch.Size([512, 13])
+bot_l_2.0.0.bias torch.Size([512])
+bot_l_2.1.0.weight torch.Size([256, 512])
+bot_l_2.1.0.bias torch.Size([256])
+bot_l_2.2.0.weight torch.Size([64, 256])
+bot_l_2.2.0.bias torch.Size([64])
+top_l.0.0.weight torch.Size([1024, 560])
+top_l.0.0.bias torch.Size([1024])
+top_l.1.0.weight torch.Size([512, 1024])
+top_l.1.0.bias torch.Size([512])
+top_l.2.0.weight torch.Size([256, 512])
+top_l.2.0.bias torch.Size([256])
+top_l.3.weight torch.Size([1, 256])
+top_l.3.bias torch.Size([1])
+DNN_1.0.weight torch.Size([26, 26])
+DNN_1.0.bias torch.Size([26])
+DNN_2.0.weight torch.Size([2, 26])
+DNN_2.0.bias torch.Size([2])
+Summation of feature sizes: 1326042
+Number of embeddings: 84866688
+Number of top MLP parameters: 1230849
+Number of bottom MLP parameters: 464832
+Number of total parameters: 86569876
+**************************************************
+Validation loss: 0.436351 AUC: 0.815880 TPR: 0.434307 TNR: 0.922638 Acc: 0.797485 Kinf/s: 659.799
+**************************************************
